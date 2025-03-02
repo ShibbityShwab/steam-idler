@@ -1,9 +1,9 @@
 {
-    "playingGames": ["Custom Game", 440, 730],
-    "onlinestatus": 1,
+    "playingGames": [252490, 730, 1172470],
+    "onlinestatus": 7,
     "afkMessage": "Hi, I'm idling.",
     "loginDelay": 2000,
     "relogDelay": 15000,
     "useLocalIP": true,
-    "logPlaytimeToFile": true
+    "logPlaytimeToFile": false
 }
