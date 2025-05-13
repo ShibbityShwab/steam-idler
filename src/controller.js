@@ -46,7 +46,23 @@ function importLogininfo() {
 
         let logininfo = {};
 
-        // Import data from accounts.txt
+        // Check for environment variables first
+        const accountName = process.env.ACCOUNT_NAME;
+        const accountPassword = process.env.ACCOUNT_PASSWORD;
+        const accountSharedSecret = process.env.ACCOUNT_SHARED_SECRET;
+
+        if (accountName && accountPassword) {
+            logininfo[accountName] = {
+                accountName: accountName,
+                password: accountPassword,
+                sharedSecret: accountSharedSecret,
+                steamGuardCode: null
+            };
+            logger("info", `Using account from environment variables: ${accountName}`, false, true, logger.animation("loading"));
+            return resolve(logininfo);
+        }
+
+        // Fallback to accounts.txt if environment variables are not set
         if (fs.existsSync("./accounts.txt")) {
             let data = fs.readFileSync("./accounts.txt", "utf8").split("\n");
 
